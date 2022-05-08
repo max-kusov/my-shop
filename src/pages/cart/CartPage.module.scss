@@ -1,0 +1,27 @@
+.cart {
+  width: 80%;
+  margin: 0 auto;
+  height: 60vh;
+
+  background: #FFFFFF;
+  box-shadow: 28px 28px 28px rgba(49, 49, 49, 0.1);
+  border-radius: 24px;
+
+  padding: 200px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__list {}
+
+  &__item {}
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
