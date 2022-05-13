@@ -18,7 +18,8 @@ const Home: FC = () => {
           <div className={style.content__top}>
             <Categories
               items={['Всё', 'Футболки', 'Худи', 'Штаны']} />
-            <Sort />
+            <Sort
+              items={['популярности', 'цене']} />
           </div>
           <div className={style.content__list}>
             <Item url={black} />

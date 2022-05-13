@@ -15,6 +15,10 @@
     overflow: hidden;
   }
 
+  &__rotated {
+    transform: rotate(180deg);
+  }
+
   & li {
     padding: 10px 15px;
   }

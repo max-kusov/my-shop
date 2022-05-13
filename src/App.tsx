@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 
 import { Header } from './components';
-import CartPage from './pages/cart/CartPage';
-import Home from './pages/home/Home';
+import { HomePage, CartPage } from './pages/'
 
 import { Routes, Route } from 'react-router-dom'
 
@@ -12,7 +11,7 @@ const App: FC = () => {
       <Header />
       {/* тут контейнер? */}
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<HomePage />} />
         <Route path='/cart' element={<CartPage />} />
       </Routes>
     </div>

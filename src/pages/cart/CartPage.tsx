@@ -3,6 +3,8 @@ import Btn from '../../components/ui/btn/Btn'
 import { Link } from 'react-router-dom'
 
 import style from './CartPage.module.scss'
+import imgCart from '../../assets/images/cart.png'
+
 
 const CartPage = () => {
   return (
@@ -11,6 +13,7 @@ const CartPage = () => {
         <h1>Корзина</h1>
         <span>Очистить корзину</span>
       </div>
+      <img style={{ opacity: '.5' }} src={imgCart} alt="" />
       <ul className={style.cart__list}>
         <li className={style.cart__item}>Что то</li>
         <li className={style.cart__item}>Что то</li>

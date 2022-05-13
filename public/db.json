@@ -1,0 +1,68 @@
+{
+  "product": [
+    {
+      "id": 0,
+      "imageUrl": "../src/assets/images/1.jpg",
+      "name": "Худи СК",
+      "colors": [
+        "Черный",
+        "Зеленый"
+      ],
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "price": 2500,
+      "category": 0
+    },
+    {
+      "id": 1,
+      "imageUrl": "../src/assets/images/1-2.jpg",
+      "name": "Худи СК",
+      "colors": [
+        "Черный",
+        "Зеленый"
+      ],
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "price": 2500,
+      "category": 0
+    },
+    {
+      "id": 2,
+      "imageUrl": "../src/assets/images/2.jpg",
+      "name": "Футболка СК",
+      "types": [
+        "Черный",
+        "Белый"
+      ],
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "price": 1500,
+      "category": 0
+    },
+    {
+      "id": 3,
+      "imageUrl": "../src/assets/images/2-2.jpg",
+      "name": "Футболка СК",
+      "types": [
+        "Черный",
+        "Белый"
+      ],
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "price": 1500,
+      "category": 0
+    }
+  ]
+}

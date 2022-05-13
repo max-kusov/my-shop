@@ -1,25 +1,52 @@
 import React, { FC } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
 import style from './Sort.module.scss'
 
-const Sort: FC = () => {
-  const [state, setState] = React.useState(true)
+interface propsSort {
+  items: Array<string>
+}
+
+const Sort: FC<propsSort> = ({ items }) => {
+  const [state, setState] = React.useState<boolean>(false)
+  const [activeItem, setActiveItem] = React.useState<number>(0)
+  const sortRef = React.useRef<HTMLDivElement>(null)
+  const activeName = items[activeItem]
+
+  const togglePopup = () => {
+    setState(!state)
+  }
+
+  const handleClick = (e: any) => {
+    if (!e.path.includes(sortRef.current)) {
+      setState(false)
+    }
+  }
+  const onSelectItem = (i: number) => {
+    setActiveItem(i)
+    setState(false)
+  }
+
+  React.useEffect(() => {
+    document.body.addEventListener('click', handleClick)
+  }, [])
 
   return (
-    <div className={style.sort}>
-      <div className={style.sort__label} onClick={() => setState(!state)}>
-        <FontAwesomeIcon icon={faAngleUp} />
-        <span> Сортировать по: цене</span>
+    <div ref={sortRef} className={style.sort}>
+      <div className={style.sort__label} onClick={togglePopup}>
+        <FontAwesomeIcon icon={faAngleDown} className={state ? `${style.sort__rotated}` : ''} />
+        <span> Сортировать по: {activeName}</span>
       </div>
-      <div className={`${style.sort__popup} ${state ? 'hide' : ''}`}>
+      {state && <div className={style.sort__popup}>
         <ul>
-          <li className={style.sort__active}>цене</li>
-          <li>алфавиту</li>
+          {items && items.map((item, i) => {
+            return <li className={activeItem === i ? `${style.sort__active}` : ''}
+              onClick={() => onSelectItem(i)} key={i}>{item}</li>
+          })}
         </ul>
-      </div>
+      </div>}
     </div>
   )
 }
