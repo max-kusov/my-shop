@@ -5,7 +5,7 @@ import { Btn } from '../'
 import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
 import style from './Header.module.scss'
 
@@ -22,9 +22,10 @@ const Header: FC = () => {
             </div>
           </Link>
           <Link to='/cart'>
-            <Btn>
-              <span>{<FontAwesomeIcon icon={faCartArrowDown} />} | 535rub</span>
-            </Btn>
+            <div className={style.header__test}>
+              {<FontAwesomeIcon className={style.header__cart} icon={faCartShopping} />}
+              <div className={style.header__label}>0</div>
+            </div>
           </Link>
         </div>
       </div>

@@ -6,26 +6,27 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import style from './Sort.module.scss'
 
 interface propsSort {
-  items: Array<string>
+  activeItem: any,
+  items: Array<any>,
+  onClickItem: any
 }
 
-const Sort: FC<propsSort> = ({ items }) => {
+const Sort: FC<propsSort> = React.memo(({ activeItem, items, onClickItem }) => {
   const [state, setState] = React.useState<boolean>(false)
-  const [activeItem, setActiveItem] = React.useState<number>(0)
   const sortRef = React.useRef<HTMLDivElement>(null)
-  const activeName = items[activeItem]
+  const activeName = items.find((obj) => obj.type === activeItem).name
 
-  const togglePopup = () => {
+  const togglePopup = (): void => {
     setState(!state)
   }
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: any): void => {
     if (!e.path.includes(sortRef.current)) {
       setState(false)
     }
   }
-  const onSelectItem = (i: number) => {
-    setActiveItem(i)
+  const onSelectItem = (item: string): void => {
+    onClickItem(item)
     setState(false)
   }
 
@@ -37,18 +38,19 @@ const Sort: FC<propsSort> = ({ items }) => {
     <div ref={sortRef} className={style.sort}>
       <div className={style.sort__label} onClick={togglePopup}>
         <FontAwesomeIcon icon={faAngleDown} className={state ? `${style.sort__rotated}` : ''} />
-        <span> Сортировать по: {activeName}</span>
+        <span> Сортировать по: <b>{activeName}</b></span>
       </div>
       {state && <div className={style.sort__popup}>
         <ul>
           {items && items.map((item, i) => {
-            return <li className={activeItem === i ? `${style.sort__active}` : ''}
-              onClick={() => onSelectItem(i)} key={i}>{item}</li>
+            // console.log(item)
+            return <li className={activeItem === item.type ? `${style.active}` : ''}
+              onClick={() => onSelectItem(item.type)} key={i}>{item.name}</li>
           })}
         </ul>
       </div>}
     </div>
   )
-}
+})
 
 export default Sort

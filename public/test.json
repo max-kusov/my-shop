@@ -2,7 +2,7 @@
   "products": [
     {
       "id": 0,
-      "imageUrl": "https://disk.yandex.ru/client/disk/my-shop?idApp=client&dialog=slider&idDialog=%2Fdisk%2Fmy-shop%2F1.jpg",
+      "imageUrl": "../../assets/images/1.jpg",
       "name": "Худи СК",
       "colors": [
         "Черный",
@@ -14,8 +14,7 @@
         2
       ],
       "price": 2500,
-      "popular": 5,
-      "category": 1
+      "category": 0
     },
     {
       "id": 1,
@@ -30,8 +29,7 @@
         2
       ],
       "price": 2500,
-      "category": 1,
-      "popular": 1,
+      "category": 0,
       "label": "new"
     },
     {
@@ -46,9 +44,8 @@
         0,
         1
       ],
-      "price": 900,
+      "price": 1500,
       "category": 0,
-      "popular": 4,
       "label": "top"
     },
     {
@@ -63,7 +60,7 @@
         2
       ],
       "price": 1500,
-      "category": 1
+      "category": 0
     },
     {
       "id": 4,
@@ -76,8 +73,7 @@
       "sizes": [
         2
       ],
-      "price": 500,
-      "popular": 2,
+      "price": 1500,
       "category": 0
     },
     {

@@ -5,14 +5,26 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F5F5F5;
+  background-color: #1E1F28;
 }
 
 * {
   box-sizing: border-box;
 }
 
-ul {
+a {
+  color: #F7F7F7;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #F7F7F7;
+  text-decoration: underline;
+
+}
+
+ul,
+p {
   margin: 0;
   padding: 0;
 }

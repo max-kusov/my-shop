@@ -2,30 +2,54 @@ import React, { FC } from 'react'
 import { Categories, Sort, Item } from '../../components'
 
 import style from './Home.module.scss'
-import green from '../../assets/images/1.jpg'
-import brown from '../../assets/images/2-2.jpg'
-import black from '../../assets/images/2.jpg'
 
 import Slider from '../../components/slider/Slider'
 
+import { setCategory, setSortBy } from '../../store/actions/filters';
+import { useDispatch, useSelector } from 'react-redux';
+import MyLoader from '../../components/item/MyLoader';
+import { fetchProducts } from '../../store/actions/products';
+
+
+const categoriesArray = ['Футболки', 'Худи', 'Штаны']
+const sortItems = [
+  { name: 'популярности', type: 'popular' },
+  { name: 'цене', type: 'price' }
+]
 
 const Home: FC = () => {
+  const dispatch = useDispatch()
+  const products = useSelector(({ products }: any) => products.items)
+  const isLoaded = useSelector(({ products }: any) => products.isLoaded)
+  const { category, sortBy } = useSelector(({ filters }: any) => filters)
+
+  React.useEffect(() => {
+    dispatch<any>(fetchProducts(sortBy, category))
+  }, [category, sortBy])
+
+  const onSelectCategy = React.useCallback((i: any) => {
+    dispatch(setCategory(i))
+  }, [])
+
+  const onClickItem = React.useCallback((type: string) => {
+    dispatch(setSortBy(type))
+  }, [])
+
   return (
     <>
       <Slider />
       <div className='container'>
         <div className={style.content}>
           <div className={style.content__top}>
-            <Categories
-              items={['Всё', 'Футболки', 'Худи', 'Штаны']} />
-            <Sort
-              items={['популярности', 'цене']} />
+            <Categories activeCategory={category} onClickItem={onSelectCategy}
+              items={categoriesArray} />
+            <Sort activeItem={sortBy} items={sortItems} onClickItem={onClickItem} />
           </div>
           <div className={style.content__list}>
-            <Item url={black} />
-            <Item url={green} />
-            <Item url={brown} />
-            <Item url={black} />
+            {isLoaded
+              ? products.map((product: any) => <Item key={product.id} {...product} />)
+              : Array(7).fill(0).map((_, i) => <MyLoader key={i} />)
+            }
           </div>
         </div>
       </div>

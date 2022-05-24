@@ -6,6 +6,29 @@
     justify-content: space-between;
   }
 
+  &__test {
+    position: relative;
+  }
+
+  &__cart {
+    font-size: 28px;
+    // color: #EF3651;
+    color: #ABB4BD;
+  }
+
+  &__label {
+    padding: 5px 10px;
+    background-color: #FF3E3E;
+    opacity: .9;
+    border-radius: 50%;
+    font-size: 14px;
+    text-align: center;
+    // padding: 5px;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+  }
+
   &__logo {
     display: flex;
     align-items: center;

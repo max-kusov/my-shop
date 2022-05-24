@@ -1,63 +1,97 @@
 .item {
-  width: 264px;
-  height: 460px;
+  height: 100%;
 
-  background: #FFFFFF;
+  background: #2A2C36;
   // background: rgb(12, 2, 77);
 
-  box-shadow: 28px 28px 28px rgba(49, 49, 49, 0.1);
+  // box-shadow: 28px 28px 28px rgba(49, 49, 49, 0.1);
   border-radius: 24px;
 
   transition: linear all .2s;
-  overflow: hidden;
+  // overflow: hidden;
 
   // временно
-  margin: 30px;
+  margin: 25px;
+  padding: 20px;
 
   display: flex;
-  align-items: center;
+  align-items: right;
   flex-direction: column;
 
+  color: #F7F7F7;
+
+  position: relative;
+
+
+  &__label {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+
+    padding: 7px 15px;
+
+    background: #FF3E3E;
+    border-radius: 29px;
+    text-align: center;
+
+    text-transform: uppercase;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
 
   &:hover {
-    box-shadow: 38px 38px 38px rgba(49, 49, 49, 0.15);
+    // box-shadow: 38px 38px 38px rgba(49, 49, 49, 0.15);
     transform: translate(-3px, -3px)
   }
 
   & img {
     max-height: 200px;
-    margin-top: 10px;
+    border-radius: 20px;
   }
 
   h2 {
-    margin: 3px;
+    margin: 8px 0;
+    font-weight: 400;
     font-size: 20px;
+    line-height: 20px;
+
+    color: #F7F7F7;
+
   }
 
   &__text {
     font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: -0.0015em;
 
-    color: #313131;
+    color: #ABB4BD;
 
-    opacity: 0.3;
+    // opacity: 0.3;
   }
 
   &__selector {
-    background: #F3F3F3;
+    background-color: #1E1F28;
+
     border-radius: 10px;
     box-shadow: 0px 3px 5px rgb(0 0 0 / 20%);
 
     & li {
+      background: none;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
       border-radius: 5px;
       padding: 10px 20px;
       margin: 4px;
+      cursor: pointer;
     }
 
     .active {
-      background: #FFFFFF;
+      background: #2A2C36;
     }
   }
 
@@ -65,7 +99,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 3px 0;
+    margin: 10px 0;
     padding: 0;
   }
 
@@ -85,5 +119,11 @@
 
   &__price {
     margin: 3px 0;
+    font-size: 20px;
+  }
+
+  .disabled {
+    opacity: .2;
+    pointer-events: none;
   }
 }

@@ -3,27 +3,27 @@ import Btn from '../../components/ui/btn/Btn'
 import { Link } from 'react-router-dom'
 
 import style from './CartPage.module.scss'
-import imgCart from '../../assets/images/cart.png'
+import ProductCard from '../../components/productCard/ProductCard'
+import { Item } from '../../components'
 
 
 const CartPage = () => {
   return (
     <div className={style.cart}>
-      <div className={style.cart__header}>
-        <h1>Корзина</h1>
-        <span>Очистить корзину</span>
-      </div>
-      <img style={{ opacity: '.5' }} src={imgCart} alt="" />
-      <ul className={style.cart__list}>
-        <li className={style.cart__item}>Что то</li>
-        <li className={style.cart__item}>Что то</li>
+      <h1>My Bag</h1>
+      <ul>
+        <li>
+          {<ProductCard />}
+          {<ProductCard />}
+          {<ProductCard />}
+
+        </li>
       </ul>
-      <div>Сумма заказа 566руб</div>
       <div className={style.cart__footer}>
         <Link to='/'>
           <Btn text={'вернуться назад'} />
         </Link>
-        <Btn text={'оформить заказ'} black />
+        <Btn text={'оформить заказ'} red />
       </div>
     </div>
   )

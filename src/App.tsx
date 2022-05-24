@@ -1,20 +1,25 @@
 import React, { FC } from 'react';
+import { Routes, Route } from 'react-router-dom'
+// import { useDispatch } from 'react-redux';
 
 import { Header } from './components';
 import { HomePage, CartPage } from './pages/'
+// import { fetchProducts } from './store/actions/products';
 
-import { Routes, Route } from 'react-router-dom'
+import Cart from './components/cart/Cart'
+
+
 
 const App: FC = () => {
   return (
-    <div>
+    < div >
       <Header />
-      {/* тут контейнер? */}
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/cart' element={<CartPage />} />
-      </Routes>
-    </div>
+      </Routes >
+      <Cart />
+    </div >
   );
 }
 
