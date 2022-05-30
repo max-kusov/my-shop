@@ -8,6 +8,33 @@
   z-index: 1000;
   color: #fff;
 
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    width: 100%;
+    margin: 50px;
+
+    & h3 {
+      opacity: .9;
+    }
+
+    & .clear {
+      opacity: .7;
+      transition: all .1s linear;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      & span {
+        margin-left: 5px;
+      }
+    }
+  }
+
+
   .close {
     position: absolute;
     font-size: 26px;
@@ -25,7 +52,7 @@
 
   ul {
     position: absolute;
-    top: 5%;
+    top: 10%;
     display: flex;
     align-items: center;
     flex-direction: column;

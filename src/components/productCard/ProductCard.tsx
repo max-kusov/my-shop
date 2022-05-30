@@ -13,13 +13,13 @@ interface ProductProps {
   imageUrl: string,
   size: string,
   price: number,
-  color: string
+  color: string,
+  totalPrice: any,
+  totalCount: number
 }
-const ProductCard: FC<ProductProps> = ({ name, imageUrl, size, price, color }) => {
-  // const { totalPrice, itemsCount, items } = useSelector(({ cart }: any) => cart)
+const ProductCard: FC<ProductProps> = ({ name, imageUrl, size, price, color, totalPrice, totalCount }) => {
   return (
     <div className={style.card}>
-      {/* <div className={style.card__img}></div> */}
       <img src={imageUrl} alt="" />
       <div className={style.card__info}>
         <div className={style.card__description}>
@@ -33,11 +33,11 @@ const ProductCard: FC<ProductProps> = ({ name, imageUrl, size, price, color }) =
         <div className={style.card__footer}>
           <div className={style.card__amount}>
             <div className={style.card__btn}>-</div>
-            <span>1</span>
+            <span>{totalCount}</span>
             <div className={style.card__btn}>+</div>
           </div>
           <div className={style.card__price}>
-            {price}руб
+            {totalPrice}руб
           </div>
         </div>
       </div>
