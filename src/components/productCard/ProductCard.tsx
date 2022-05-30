@@ -1,23 +1,32 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import style from './ProductCard.module.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from 'react-redux'
 
-import img from '../../assets/images/1.jpg'
+// import img from '../../../public/img/1.jpg'
 
-const ProductCard = () => {
+interface ProductProps {
+  name: string,
+  imageUrl: string,
+  size: string,
+  price: number,
+  color: string
+}
+const ProductCard: FC<ProductProps> = ({ name, imageUrl, size, price, color }) => {
+  // const { totalPrice, itemsCount, items } = useSelector(({ cart }: any) => cart)
   return (
     <div className={style.card}>
       {/* <div className={style.card__img}></div> */}
-      <img src={img} alt="" />
+      <img src={imageUrl} alt="" />
       <div className={style.card__info}>
         <div className={style.card__description}>
           <div>
-            <p>Name</p>
-            <span>Color: Black</span>
-            <span>Size: XL</span>
+            <p>{name}</p>
+            <span>Color: {color}</span>
+            <span>Size: {size}</span>
           </div>
           <FontAwesomeIcon icon={faXmark} className={style.card__close} />
         </div>
@@ -28,7 +37,7 @@ const ProductCard = () => {
             <div className={style.card__btn}>+</div>
           </div>
           <div className={style.card__price}>
-            530руб
+            {price}руб
           </div>
         </div>
       </div>

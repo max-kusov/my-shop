@@ -10,26 +10,23 @@ const Slider: FC = () => {
   return (
     <Carousel className="mb-5">
       <Carousel.Item>
-        <img
+        <img style={{ boxShadow: "0 0 8px 8px white inset" }}
           className="d-block w-100"
-          src={img1}
+          src={img3}
           alt="First slide"
         />
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src={img2}
+          src={img1}
           alt="Second slide"
         />
-        <Carousel.Caption>
-          <h3>Сделано в России</h3>
-        </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src={img3}
+          src={img2}
           alt="Third slide"
         />
       </Carousel.Item>

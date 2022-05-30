@@ -1,13 +1,17 @@
 .header {
-  padding: 30px 0;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  // box-Shadow: 0px 0px 25px 15px rgba(142, 142, 142, 0.3);
 
   &__wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   &__test {
     position: relative;
+    cursor: pointer;
   }
 
   &__cart {
@@ -28,25 +32,23 @@
     right: -20px;
     top: -20px;
   }
+}
 
-  &__logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #313131;
+.logo {
+  width: 100px;
+  margin: 0 20px;
+  opacity: .9;
+}
 
-    img {
-      width: 40px;
-    }
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    h3 {
-      text-transform: uppercase;
-      font-weight: 800;
-    }
-
-    h3,
-    p {
-      margin: 0 5px;
-    }
-  }
+.iconProfile {
+  font-size: 28px;
+  color: #ABB4BD;
+  margin-right: 25px;
+  cursor: pointer;
 }

@@ -10,7 +10,7 @@ export const setLoaded = (payload: boolean) => ({
 
 export const fetchProducts = (sortBy: any, category: any) => (dispatch: any) => {
   dispatch(setLoaded(false))
-  axios.get(`http://localhost:3001/products?${category !== null ? `category=${category}` : ''}&_sort=${sortBy}&_order=asc`).then(({ data }) => {
+  axios.get(`/products?${category !== null ? `category=${category}` : ''}&_sort=${sortBy}&_order=asc`).then(({ data }) => {
     dispatch(setProducts(data))
   })
 }

@@ -1,32 +1,41 @@
 import React, { FC } from 'react'
-import logo from '../../assets/skull-solid.svg'
-import { Btn } from '../'
+import logo from '../../assets/images/logo.png'
+import { useSelector } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons'
 
 import style from './Header.module.scss'
+import Search from '../ui/Search/Search'
 
-const Header: FC = () => {
+interface HeaderProps {
+  searchValue: string,
+  setSearchValue: any,
+  setCart: any
+}
+const Header: FC<HeaderProps> = ({ searchValue, setSearchValue, setCart }) => {
+  const { itemsCount } = useSelector(({ cart }: any) => cart)
+  const openCart = () => setCart(true)
+
   return (
     <header className={style.header}>
       <div className='container'>
         <div className={style.header__wrapper}>
-          <Link to='/' className={style.header__logo}>
-            <img src={logo} alt="logo" />
-            <div>
-              <h3>My Shop</h3>
-              <p>магазин для своих</p>
-            </div>
+          <Link to='/'>
+            <img src={logo} alt="logo" className={style.logo} />
           </Link>
-          <Link to='/cart'>
-            <div className={style.header__test}>
-              {<FontAwesomeIcon className={style.header__cart} icon={faCartShopping} />}
-              <div className={style.header__label}>0</div>
+          <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+          <div className={style.icons}>
+            <Link to='/profile'>
+              <FontAwesomeIcon icon={faUser} className={style.iconProfile} />
+            </Link>
+            <div className={style.header__test} onClick={openCart}>
+              <FontAwesomeIcon className={style.header__cart} icon={faCartShopping} />
+              <div className={style.header__label}>{itemsCount}</div>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </header >

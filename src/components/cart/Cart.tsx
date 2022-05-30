@@ -2,26 +2,42 @@ import React from 'react'
 import ProductCard from '../productCard/ProductCard'
 import Btn from '../ui/btn/Btn'
 import style from './Cart.module.scss'
+import { useSelector } from 'react-redux'
 
-const Cart = () => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
+
+
+const Cart = ({ setCart }: any) => {
+  const { totalPrice, itemsCount, items } = useSelector(({ cart }: any) => cart)
+  const products = Object.keys(items).map(key => {
+    return items[key][0]
+  })
+
+  const closeCart = () => {
+    setCart(false)
+  }
+
+  const randomNumber = () => Math.floor(Math.random() * 5000) // нужен ли?
+
   return (
     <div className={style.cart}>
       <div className={style.blur}>
+        <FontAwesomeIcon icon={faXmark} className={style.close} onClick={closeCart} />
         <ul>
-          <li><ProductCard /></li>
-          <li><ProductCard /></li>
-          <li><ProductCard /></li>
-
+          {products.map((obj, i) => {
+            return <li key={i}><ProductCard {...obj} /></li>
+          })}
         </ul>
 
         <div className={style.order}>
           <div className={style.order__info}>
-            <span>Номер заказа: 5423223</span>
-            <span>05-12-2019</span>
+            <span>Номер заказа: {randomNumber()}</span>
+            <span> 26-05-2022</span>
           </div>
           <div className={style.order__info}>
-            <span>Количество: 3</span>
-            <span>Итого: 5000руб</span>
+            <span>Количество: {itemsCount}</span>
+            <span>Итого: {totalPrice}руб</span>
           </div>
           <Btn text='Оформить заказ' green />
         </div>

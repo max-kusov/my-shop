@@ -11,14 +11,18 @@ import Cart from './components/cart/Cart'
 
 
 const App: FC = () => {
+
+  const [cart, setCart] = React.useState(false)
+  const [searchValue, setSearchValue] = React.useState('')
+
   return (
     < div >
-      <Header />
+      <Header searchValue={searchValue} setSearchValue={setSearchValue} setCart={setCart} />
       <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/cart' element={<CartPage />} />
+        <Route path='/' element={<HomePage searchValue={searchValue} />} />
+        <Route path='/profile' element={<CartPage />} />
       </Routes >
-      <Cart />
+      {cart && <Cart setCart={setCart} />}
     </div >
   );
 }

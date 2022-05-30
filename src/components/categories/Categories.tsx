@@ -19,7 +19,7 @@ const Categories: FC<PropsCategories> = React.memo(({ activeCategory, items, onC
       <li
         className={activeCategory === null ? 'active' : ''}
         onClick={() => onClickItem(null)}>
-        <Btn text={'тест'} red={onSelectActive(null)} />
+        <Btn text={'Все'} red={onSelectActive(null)} />
       </li>
       {items.map((item, i) =>
         <li onClick={() => onClickItem(i)} key={i} >

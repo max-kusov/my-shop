@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDown, faArrowDownShortWide } from '@fortawesome/free-solid-svg-icons'
 
 import style from './Sort.module.scss'
 
@@ -21,7 +21,8 @@ const Sort: FC<propsSort> = React.memo(({ activeItem, items, onClickItem }) => {
   }
 
   const handleClick = (e: any): void => {
-    if (!e.path.includes(sortRef.current)) {
+    let path = e.path || (e.composedPath && e.composedPath());
+    if (!path.includes(sortRef.current)) {
       setState(false)
     }
   }
@@ -45,7 +46,10 @@ const Sort: FC<propsSort> = React.memo(({ activeItem, items, onClickItem }) => {
           {items && items.map((item, i) => {
             // console.log(item)
             return <li className={activeItem === item.type ? `${style.active}` : ''}
-              onClick={() => onSelectItem(item.type)} key={i}>{item.name}</li>
+              onClick={() => onSelectItem(item.type)} key={i}>
+              {item.name}
+              {/* <FontAwesomeIcon icon={faArrowDownShortWide} /> */}
+            </li>
           })}
         </ul>
       </div>}
