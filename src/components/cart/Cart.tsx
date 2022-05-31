@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-import { clearCart } from '../../store/actions/cart'
+import { clearCart, removeProductCard, plusProductCard, minusProductCard } from '../../store/actions/cart'
 
 
 const Cart = ({ setCart }: any) => {
@@ -26,6 +26,17 @@ const Cart = ({ setCart }: any) => {
     if (window.confirm('Очистить корзину?')) {
       dispatch(clearCart())
     }
+  }
+  const onRemoveItem = (id: any) => {
+    dispatch(removeProductCard(id))
+  }
+
+  const onPlusItem = (id: any) => {
+    dispatch(plusProductCard(id))
+  }
+
+  const onMinusItem = (id: any) => {
+    dispatch(minusProductCard(id))
   }
 
   const randomNumber = () => Math.floor(Math.random() * 5000) // нужен ли?
@@ -47,6 +58,9 @@ const Cart = ({ setCart }: any) => {
               {...obj}
               totalPrice={items[obj.id].totalPrice}
               totalCount={items[obj.id].items.length}
+              onRemoveItem={onRemoveItem}
+              onPlusItem={onPlusItem}
+              onMinusItem={onMinusItem}
             /></li>
           })}
         </ul>

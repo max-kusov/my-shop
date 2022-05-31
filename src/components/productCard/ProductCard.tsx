@@ -9,15 +9,28 @@ import { useSelector } from 'react-redux'
 // import img from '../../../public/img/1.jpg'
 
 interface ProductProps {
+  id: number,
   name: string,
   imageUrl: string,
   size: string,
   price: number,
   color: string,
   totalPrice: any,
-  totalCount: number
+  totalCount: number,
+  onRemoveItem: any,
+  onPlusItem: any,
+  onMinusItem: any
 }
-const ProductCard: FC<ProductProps> = ({ name, imageUrl, size, price, color, totalPrice, totalCount }) => {
+const ProductCard: FC<ProductProps> = ({ id, name, imageUrl, size, price, color, totalPrice, totalCount, onRemoveItem, onPlusItem, onMinusItem }) => {
+  const handleRemove = () => {
+    onRemoveItem(id)
+  }
+  const handlePlus = () => {
+    onPlusItem(id)
+  }
+  const handleMinus = () => {
+    onMinusItem(id)
+  }
   return (
     <div className={style.card}>
       <img src={imageUrl} alt="" />
@@ -28,13 +41,20 @@ const ProductCard: FC<ProductProps> = ({ name, imageUrl, size, price, color, tot
             <span>Color: {color}</span>
             <span>Size: {size}</span>
           </div>
-          <FontAwesomeIcon icon={faXmark} className={style.card__close} />
+          <FontAwesomeIcon icon={faXmark}
+            className={style.card__close}
+            onClick={handleRemove}
+          />
         </div>
         <div className={style.card__footer}>
           <div className={style.card__amount}>
-            <div className={style.card__btn}>-</div>
+            <div className={style.card__btn}
+              onClick={handleMinus}
+            >-</div>
             <span>{totalCount}</span>
-            <div className={style.card__btn}>+</div>
+            <div className={style.card__btn}
+              onClick={handlePlus}
+            >+</div>
           </div>
           <div className={style.card__price}>
             {totalPrice}руб
