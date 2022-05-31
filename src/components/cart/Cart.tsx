@@ -39,7 +39,6 @@ const Cart = ({ setCart }: any) => {
     dispatch(minusProductCard(id))
   }
 
-  const randomNumber = () => Math.floor(Math.random() * 5000) // нужен ли?
 
   return (
     <div className={style.cart}>

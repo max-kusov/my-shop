@@ -4,7 +4,6 @@ import style from './ProductCard.module.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useSelector } from 'react-redux'
 
 // import img from '../../../public/img/1.jpg'
 

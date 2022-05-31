@@ -35,10 +35,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "node server.js",
-    "fake": "json-server --watch public/db.json --port 3001"
+    "server": "node server.js"
   },
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": [
       "react-app",
