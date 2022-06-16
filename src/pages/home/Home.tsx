@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MyLoader from '../../components/item/MyLoader';
 import { fetchProducts } from '../../store/actions/products';
 import { addItemsToCart } from '../../store/actions/cart';
+import Paginate from '../../components/paginate/Paginate';
 
 
 const categoriesArray = ['Футболки', 'Худи', 'Штаны']
@@ -28,9 +29,11 @@ const Home: FC<HomeProps> = ({ searchValue }) => {
   const isLoaded = useSelector(({ products }: any) => products.isLoaded)
   const { category, sortBy } = useSelector(({ filters }: any) => filters)
 
+  const [currentPage, setCurrentPage] = React.useState(0)
+
   React.useEffect(() => {
-    dispatch<any>(fetchProducts(sortBy, category))
-  }, [category, sortBy])
+    dispatch<any>(fetchProducts(sortBy, category, currentPage))
+  }, [category, sortBy, currentPage])
 
   const onSelectCategy = React.useCallback((i: any) => {
     dispatch(setCategory(i))
@@ -51,6 +54,14 @@ const Home: FC<HomeProps> = ({ searchValue }) => {
   }).map((product: any) => <Item key={product.id} {...product} onAddItems={addToCart} />)
   const Loader = Array(7).fill(0).map((_, i) => <MyLoader key={i} />)
 
+
+
+  const handlePageClick = (event: any) => {
+    // const newOffset = (event.selected * itemsPerPage) % items.length;
+
+    // setItemOffset(newOffset);
+  };
+
   return (
     <>
       <Slider />
@@ -61,13 +72,17 @@ const Home: FC<HomeProps> = ({ searchValue }) => {
               items={categoriesArray} />
             <Sort activeItem={sortBy} items={sortItems} onClickItem={onClickItem} />
           </div>
-          <div className={style.content__list}>
-            {isLoaded
-              ? productsMap
-              : Loader
-            }
+          <div className={style.content__wrapper}>
+            <div className={style.content__list}>
+              {isLoaded
+                ? productsMap
+                : Loader
+              }
+            </div>
           </div>
+
         </div>
+        <Paginate onChangePage={(num: any) => setCurrentPage(num)} />
       </div>
     </>
   )

@@ -7,6 +7,7 @@ import { HomePage, CartPage } from './pages/'
 // import { fetchProducts } from './store/actions/products';
 
 import Cart from './components/cart/Cart'
+import TabBar from './components/tabBar/TabBar';
 
 
 
@@ -20,8 +21,9 @@ const App: FC = () => {
       <Header searchValue={searchValue} setSearchValue={setSearchValue} setCart={setCart} />
       <Routes>
         <Route path='/' element={<HomePage searchValue={searchValue} />} />
-        <Route path='/profile' element={<CartPage />} />
+        <Route path='/cart' element={<CartPage />} />
       </Routes >
+      <TabBar setCart={setCart} />
       {cart && <Cart setCart={setCart} />}
     </div >
   );

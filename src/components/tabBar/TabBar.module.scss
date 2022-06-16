@@ -1,0 +1,32 @@
+.tab {
+  display: none;
+}
+
+@media(max-width: 820px) {
+  .tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1000;
+    bottom: 0;
+    width: 100%;
+    background: #1E1F28;
+    border-radius: 12px 12px 0px 0px;
+    /* filter: drop-shadow(0px -4px 20px #d2d2d2); */
+    box-shadow: 0px 0px 5px 1px #1e1f28;
+    min-width: 375px;
+    height: 83px;
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 30px;
+    width: 321px;
+    height: 45px;
+    color: rgba(255, 255, 255, .7);
+  }
+
+}

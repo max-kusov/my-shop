@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping, faUser, faAngleLeft, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import style from './Header.module.scss'
 import Search from '../ui/Search/Search'
@@ -16,8 +16,20 @@ interface HeaderProps {
   setCart: any
 }
 const Header: FC<HeaderProps> = ({ searchValue, setSearchValue, setCart }) => {
+  const [searchActive, setSearchActive] = React.useState(false)
   const { itemsCount } = useSelector(({ cart }: any) => cart)
   const openCart = () => setCart(true)
+
+  // временно 
+  const handleSearch = () => {
+    if (!searchActive) {
+      setSearchActive(true)
+    }
+  }
+  const closeSearch = () => {
+    setSearchActive(false)
+
+  }
 
   return (
     <header className={style.header}>
@@ -35,6 +47,16 @@ const Header: FC<HeaderProps> = ({ searchValue, setSearchValue, setCart }) => {
               <FontAwesomeIcon className={style.header__cart} icon={faCartShopping} />
               <div className={style.header__label}>{itemsCount}</div>
             </div>
+          </div>
+        </div>
+        <div className={style.header__mobile}>
+          <FontAwesomeIcon icon={faAngleLeft} />
+          <span>Главная</span>
+          <div className={searchActive ? `${style.search} ${style.active}` : `${style.search}`} onClick={() => handleSearch()} >
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+            <input type="text" placeholder='ПОИСК' />
+            <FontAwesomeIcon icon={faXmark} className={style.close} onClick={() => closeSearch()} />
+
           </div>
         </div>
       </div>

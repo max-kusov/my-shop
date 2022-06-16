@@ -1,6 +1,10 @@
 .categories {
   display: flex;
 
+  @media(max-width: 1200px) {
+    margin-bottom: 30px;
+  }
+
   li {
     margin: 0 5px;
   }

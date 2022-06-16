@@ -18,8 +18,16 @@ body {
 }
 
 a {
-  color: #F7F7F7;
+  color: rgba(255, 255, 255, .7);
   text-decoration: none;
+}
+
+.active {
+  color: #EF3651;
+}
+
+.active:hover {
+  color: #EF3651;
 }
 
 input,
