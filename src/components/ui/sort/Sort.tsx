@@ -6,17 +6,22 @@ import { faAngleDown, faArrowDownShortWide } from '@fortawesome/free-solid-svg-i
 import style from './Sort.module.scss'
 
 interface propsSort {
-  activeItem: any,
   items: Array<any>,
-  onClickItem: any
+  activeItem: any,
+  onSelectSort: any
 }
 
-const Sort: FC<propsSort> = React.memo(({ activeItem, items, onClickItem }) => {
+const Sort: FC<propsSort> = React.memo(({ items, activeItem, onSelectSort }) => {
   const [state, setState] = React.useState<boolean>(false)
   const sortRef = React.useRef<HTMLDivElement>(null)
   const activeName = items.find((obj) => obj.type === activeItem).name
 
   const togglePopup = (): void => {
+    setState(!state)
+  }
+
+  const onClickListItem = (item: any) => {
+    onSelectSort(item)
     setState(!state)
   }
 
@@ -26,29 +31,26 @@ const Sort: FC<propsSort> = React.memo(({ activeItem, items, onClickItem }) => {
       setState(false)
     }
   }
-  const onSelectItem = (item: string): void => {
-    onClickItem(item)
-    setState(false)
-  }
 
   React.useEffect(() => {
     document.body.addEventListener('click', handleClick)
+    return () => document.body.removeEventListener('click', handleClick)
   }, [])
 
   return (
-    <div ref={sortRef} className={style.sort}>
-      <div className={style.sort__label} onClick={togglePopup}>
-        <FontAwesomeIcon icon={faAngleDown} className={state ? `${style.sort__rotated}` : ''} />
+    <div ref={sortRef} className={style.root}>
+      <div className={style.label} onClick={togglePopup}>
+        <FontAwesomeIcon icon={faAngleDown} className={state ? `${style.rotated}` : ''} />
         <span> Сортировать по: <b>{activeName}</b></span>
       </div>
-      {state && <div className={style.sort__popup}>
+      {state && <div className={style.popup}>
         <ul>
-          {items && items.map((item, i) => {
-            // console.log(item)
-            return <li className={activeItem === item.type ? `${style.active}` : ''}
-              onClick={() => onSelectItem(item.type)} key={i}>
+          {items && items.map((item: any, i: any) => {
+            return <li
+              className={activeItem === item.type ? `${style.active}` : ''}
+              onClick={() => onClickListItem(item.type)}
+              key={i}>
               {item.name}
-              {/* <FontAwesomeIcon icon={faArrowDownShortWide} /> */}
             </li>
           })}
         </ul>

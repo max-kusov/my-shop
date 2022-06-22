@@ -6,8 +6,13 @@ import { faCartShopping, faHouse, faUser, faHeart } from '@fortawesome/free-soli
 import style from './TabBar.module.scss'
 import { NavLink } from 'react-router-dom'
 
+import { ShowCart } from '../../App'
 
-const TabBar = ({ setCart }) => {
+
+const TabBar = () => {
+  console.log('rerender tab')
+
+  const { setCart } = React.useContext(ShowCart)
   const openCart = () => setCart(true)
   const [active, setActive] = React.useState(0)
   const handleBtn = () => {

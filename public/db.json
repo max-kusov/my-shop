@@ -12,7 +12,7 @@
       ],
       "price": 2500,
       "popular": 5,
-      "category": 1
+      "category": 2
     },
     {
       "id": 1,
@@ -24,7 +24,7 @@
         2
       ],
       "price": 2500,
-      "category": 1,
+      "category": 2,
       "popular": 1,
       "label": "new"
     },
@@ -39,7 +39,7 @@
         2
       ],
       "price": 900,
-      "category": 0,
+      "category": 1,
       "popular": 4,
       "label": "top"
     },
@@ -53,7 +53,7 @@
         2
       ],
       "price": 1200,
-      "category": 0
+      "category": 1
     },
     {
       "id": 4,
@@ -65,7 +65,7 @@
       ],
       "price": 3900,
       "popular": 2,
-      "category": 2
+      "category": 3
     },
     {
       "id": 5,
@@ -77,7 +77,7 @@
         2
       ],
       "price": 1500,
-      "category": 1
+      "category": 2
     },
     {
       "id": 6,
@@ -89,7 +89,7 @@
         1
       ],
       "price": 1200,
-      "category": 0,
+      "category": 1,
       "label": "sale"
     }
   ]

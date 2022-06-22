@@ -2,13 +2,17 @@ import React, { FC } from 'react';
 import { Routes, Route } from 'react-router-dom'
 // import { useDispatch } from 'react-redux';
 
-import { Header } from './components';
-import { HomePage, CartPage } from './pages/'
+import { Btn, Header } from './components';
+import { Home, CartPage } from './pages/'
 // import { fetchProducts } from './store/actions/products';
 
 import Cart from './components/cart/Cart'
 import TabBar from './components/tabBar/TabBar';
+import NotFound from './pages/NotFound/NotFound';
 
+export const ShowCart = React.createContext({})
+
+// export const searchContext = React.createContext()
 
 
 const App: FC = () => {
@@ -16,15 +20,19 @@ const App: FC = () => {
   const [cart, setCart] = React.useState(false)
   const [searchValue, setSearchValue] = React.useState('')
 
+  //searchValue={searchValue} setSearchValue={setSearchValue} 
   return (
     < div >
-      <Header searchValue={searchValue} setSearchValue={setSearchValue} setCart={setCart} />
-      <Routes>
-        <Route path='/' element={<HomePage searchValue={searchValue} />} />
-        <Route path='/cart' element={<CartPage />} />
-      </Routes >
-      <TabBar setCart={setCart} />
-      {cart && <Cart setCart={setCart} />}
+      <ShowCart.Provider value={{ cart, setCart, searchValue, setSearchValue }}>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          {/* <Route path='/cart' element={<CartPage />} /> */}
+          <Route path='*' element={<NotFound />} />
+        </Routes >
+        <TabBar />
+        {cart && <Cart />}
+      </ShowCart.Provider>
     </div >
   );
 }

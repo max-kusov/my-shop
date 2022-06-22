@@ -1,8 +1,10 @@
 import React from 'react'
 import ProductCard from '../productCard/ProductCard'
-import Btn from '../ui/btn/Btn'
+import Btn from '../ui/Btn/Btn'
 import style from './Cart.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { ShowCart } from '../../App'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -10,7 +12,9 @@ import { faXmark, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { clearCart, removeProductCard, plusProductCard, minusProductCard } from '../../store/actions/cart'
 
 
-const Cart = ({ setCart }: any) => {
+const Cart = () => {
+  const { setCart }: any = React.useContext(ShowCart)
+
   const dispatch = useDispatch()
 
   const { totalPrice, itemsCount, items } = useSelector(({ cart }: any) => cart)

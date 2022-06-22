@@ -13,14 +13,14 @@ interface PropsCategories {
 const Categories: FC<PropsCategories> = React.memo(({ activeCategory, items, onClickItem }) => {
 
   const onSelectActive = (i: number | null): boolean => activeCategory === i ? true : false
-
+  console.log(typeof (activeCategory))
   return (
     <ul className={style.categories}>
-      <li
+      {/* <li
         className={activeCategory === null ? 'active' : ''}
         onClick={() => onClickItem(null)}>
         <Btn text={'Все'} red={onSelectActive(null)} />
-      </li>
+      </li> */}
       {items.map((item, i) =>
         <li onClick={() => onClickItem(i)} key={i} >
           <Btn text={item} red={onSelectActive(i)} />

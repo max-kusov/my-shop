@@ -1,0 +1,18 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 200px 0;
+
+  color: #fff;
+
+  span {
+    font-size: 80px;
+  }
+
+  p {
+    font-size: 28px;
+  }
+}

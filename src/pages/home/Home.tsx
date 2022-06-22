@@ -5,62 +5,100 @@ import style from './Home.module.scss'
 
 import Slider from '../../components/slider/Slider'
 
-import { setCategory, setSortBy } from '../../store/actions/filters';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import MyLoader from '../../components/item/MyLoader';
-import { fetchProducts } from '../../store/actions/products';
-import { addItemsToCart } from '../../store/actions/cart';
 import Paginate from '../../components/paginate/Paginate';
 
+import axios from 'axios';
+import qs from 'qs';
 
-const categoriesArray = ['Футболки', 'Худи', 'Штаны']
+import { setCategory, setSort, setPageCount, setFilters } from '../../store/slices/filterSlice';
+import { setProducts, setLoaded } from '../../store/slices/productSlice';
+
+import { ShowCart } from '../../App';
+
+const categoriesArray = ['Все', 'Футболки', 'Худи', 'Штаны']
 const sortItems = [
   { name: 'популярности', type: 'popular' },
   { name: 'цене', type: 'price' }
 ]
 
-interface HomeProps {
-  searchValue?: any
-}
-const Home: FC<HomeProps> = ({ searchValue }) => {
+
+const Home: FC = () => {
   const dispatch = useDispatch()
-  const products = useSelector(({ products }: any) => products.items)
-  const cartProducts = useSelector(({ cart }: any) => cart.items)
-  const isLoaded = useSelector(({ products }: any) => products.isLoaded)
-  const { category, sortBy } = useSelector(({ filters }: any) => filters)
+  const navigate = useNavigate()
+  const isSearch = React.useRef(false)
+  const isMounted = React.useRef(false)
 
-  const [currentPage, setCurrentPage] = React.useState(0)
+  const { category, sortBy, pageCount } = useSelector((state: any) => state.filter)
+  const { items, isLoaded } = useSelector((state: any) => state.products)
 
+  const { searchValue }: any = React.useContext(ShowCart)
+
+  // при изменении параметров
   React.useEffect(() => {
-    dispatch<any>(fetchProducts(sortBy, category, currentPage))
-  }, [category, sortBy, currentPage])
-
-  const onSelectCategy = React.useCallback((i: any) => {
-    dispatch(setCategory(i))
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        category,
+        sortBy,
+        pageCount
+      })
+      navigate(`?${queryString}`)
+    }
+    isMounted.current = true
+  }, [category, sortBy, pageCount])
+  // при изменении параметров, передаем в Redux
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1))
+      dispatch(
+        setFilters({
+          ...params
+        })
+      )
+      isSearch.current = true
+    }
   }, [])
+  //  Запрос продуктов
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+    if (!isSearch.current) {
+      axios.get(`/products?_page=${pageCount}&_limit=4&${category > 0 ? `category=${category}` : ``}&_sort=${sortBy}&_order=asc`)
+        .then(({ data }) => {
+          dispatch(setProducts(data))
+          dispatch(setLoaded(true))
+        })
+    }
+    isSearch.current = false
+  }, [category, sortBy, pageCount])
 
-  const onClickItem = React.useCallback((type: string) => {
-    dispatch(setSortBy(type))
-  }, [])
-  const addToCart = (obj: any): void => {
-    dispatch(addItemsToCart(obj))
-  }
-
-  const productsMap = products.filter((obj: any) => {
+  const productsMap = items.filter((obj: any) => {
     if (obj.name.toLowerCase().includes(searchValue.toLowerCase())) {
       return true
     }
     return false
-  }).map((product: any) => <Item key={product.id} {...product} onAddItems={addToCart} />)
-  const Loader = Array(7).fill(0).map((_, i) => <MyLoader key={i} />)
+  }).map((product: any) => <Item key={product.id} {...product} />)
 
+  // клик дабавления в корзину
+  //onAddItems={addToCart} !!!!!!!!!!!!!!
 
+  // const addToCart = (obj: any): void => {
+  //   dispatch(addItemsToCart(obj))
+  // }
+  const Loader = Array(4).fill(0).map((_, i) => <MyLoader key={i} />)
 
-  const handlePageClick = (event: any) => {
-    // const newOffset = (event.selected * itemsPerPage) % items.length;
+  const onSelectCategy = React.useCallback((i: any) => {
+    dispatch(setCategory(i))
+  }, [])
+  const onSelectSort = React.useCallback((i: any) => {
+    dispatch(setSort(i))
+  }, [])
 
-    // setItemOffset(newOffset);
-  };
+  const onChangePage = React.useCallback((num: any) => {
+    dispatch(setPageCount(num))
+  }, [])
+
 
   return (
     <>
@@ -68,9 +106,14 @@ const Home: FC<HomeProps> = ({ searchValue }) => {
       <div className='container'>
         <div className={style.content}>
           <div className={style.content__top}>
-            <Categories activeCategory={category} onClickItem={onSelectCategy}
-              items={categoriesArray} />
-            <Sort activeItem={sortBy} items={sortItems} onClickItem={onClickItem} />
+            <Categories
+              activeCategory={category}
+              items={categoriesArray}
+              onClickItem={onSelectCategy} />
+            <Sort
+              activeItem={sortBy}
+              items={sortItems}
+              onSelectSort={onSelectSort} />
           </div>
           <div className={style.content__wrapper}>
             <div className={style.content__list}>
@@ -82,10 +125,25 @@ const Home: FC<HomeProps> = ({ searchValue }) => {
           </div>
 
         </div>
-        <Paginate onChangePage={(num: any) => setCurrentPage(num)} />
+        <Paginate value={pageCount} onChangePage={onChangePage} />
       </div>
     </>
   )
 }
 
 export default Home
+
+// исправить все импорты
+// папки с заглавной буквы
+// заменить все файлы в папках на индекс?
+// .root {}
+
+
+
+
+/// старый вариант
+  // React.useEffect(() => {
+  //   dispatch<any>(fetchProducts(sortBy, category, currentPage))
+  // }, [category, sortBy, currentPage])
+
+  // баг при выборе всех пицц и перезагрузке

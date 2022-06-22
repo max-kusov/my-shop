@@ -10,9 +10,10 @@ export const setLoaded = (payload: boolean) => ({
 
 export const fetchProducts = (sortBy: any, category: any, currentPage: any) => (dispatch: any) => {
   dispatch(setLoaded(false))
-  axios.get(`/products?_page=${currentPage}&_limit=4&${category !== null ? `category=${category}` : ''}&_sort=${sortBy}&_order=asc`).then(({ data }) => {
-    dispatch(setProducts(data))
-  })
+  axios.get(`/products?_page=${currentPage}&_limit=4&${category !== null ? `category=${category}` : ''}&_sort=${sortBy}&_order=asc`)
+    .then(({ data }) => {
+      dispatch(setProducts(data))
+    })
 }
 
 export const setProducts = (items: any) => ({

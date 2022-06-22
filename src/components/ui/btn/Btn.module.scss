@@ -1,13 +1,12 @@
-.btn {
-  border: 1.5px solid #F7F7F7;
-  // background-color: #fff;
+.root {
   background: none;
-  color: #F7F7F7;
-  text-transform: uppercase;
-  font-size: 16px;
-  // box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-  // border: none;
+  border: 1.5px solid #F7F7F7;
   border-radius: 32px;
+
+  color: #F7F7F7;
+  font-size: 16px;
+  text-transform: uppercase;
+
   padding: 10px 20px;
   transition: all linear .1s;
 
@@ -15,42 +14,30 @@
     border: 1.5px solid #ABB4BD;
     color: #ABB4BD;
   }
+}
 
-  &__red {
-    // background: #313131;
-    border: none;
+.red {
+  background: #EF3651;
+  box-shadow: 0px 4px 8px rgba(239, 54, 81, 0.35);
+  border: none;
+  transition: all linear .1s;
+
+  &:hover {
     background: #EF3651;
-    box-shadow: 0px 4px 8px rgba(239, 54, 81, 0.35);
-    border-radius: 32px;
-    color: #fff;
-    transition: all linear .1s;
-
-    &:hover {
-
-      background: #EF3651;
-      opacity: 0.9;
-      border: none;
-      color: #fff;
-
-    }
-  }
-
-  &__green {
-    // background: #313131;
     border: none;
-    background: rgb(73, 185, 76);
-    box-shadow: 0px 4px 8px rgba(3, 158, 5, 0.35);
-    border-radius: 32px;
-    color: #fff;
-    transition: all linear .1s;
+    opacity: 0.9;
+  }
+}
 
-    &:hover {
+.green {
+  background: rgb(73, 185, 76);
+  box-shadow: 0px 4px 8px rgba(3, 158, 5, 0.35);
+  border: none;
+  transition: all linear .1s;
 
-      background: rgba(3, 158, 5, 0.85);
-      opacity: 0.9;
-      border: none;
-      color: #fff;
-
-    }
+  &:hover {
+    background: rgba(3, 158, 5, 0.85);
+    border: none;
+    opacity: 0.9;
   }
 }

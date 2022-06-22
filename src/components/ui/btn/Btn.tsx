@@ -9,10 +9,11 @@ interface BtnProps {
   children?: React.ReactNode
 }
 
-const Btn: FC<BtnProps> = ({ red, text, children, green }) => {
+const Btn: FC<BtnProps> = ({ red, green, text, children }) => {
+
   return (
     <button
-      className={`${style.btn} ${red ? style.btn__red : ''} ${green ? style.btn__green : ''}`}>
+      className={`${style.root} ${red ? style.red : ''} ${green ? style.green : ''}`}>
       {text || children}
     </button>
   )
