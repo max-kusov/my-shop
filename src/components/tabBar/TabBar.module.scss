@@ -2,6 +2,28 @@
   display: none;
 }
 
+.cart {
+  position: relative;
+}
+
+.count {
+  position: absolute;
+  right: -23px;
+  top: -10px;
+  font-size: 16px;
+
+  padding: 3px 12px;
+
+  // border: 3px solid #FF3E3E;
+  background-color: rgba(30, 31, 40, 7);
+  color: #FF3E3E;
+  opacity: .9;
+  box-shadow: 0 0 3px 3px #FF3E3E;
+
+  border-radius: 29px;
+  text-align: center;
+}
+
 @media(max-width: 820px) {
   .tab {
     display: flex;

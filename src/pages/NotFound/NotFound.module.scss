@@ -1,12 +1,10 @@
 .root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  padding: 200px 0;
+  margin: 200px auto;
+  width: 80%;
 
   color: #fff;
+
+  text-align: center;
 
   span {
     font-size: 80px;

@@ -7,26 +7,25 @@ import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import debounce from 'lodash.debounce'
 
-import { ShowCart } from '../../../App'
+import { useDispatch } from 'react-redux'
+import { setSearchValue } from '../../../store/slices/filterSlice'
 
 const Search: FC = () => {
   const [searchActive, setSearchActive] = React.useState(false)
+  const dispatch = useDispatch()
   const [value, setValue] = React.useState('')
-
-  const { setSearchValue }: any = React.useContext(ShowCart)
 
   const openSearch = () => !searchActive ? setSearchActive(true) : false
 
   const updateSearchValue = React.useCallback(
     debounce((value) => {
-      // тут функция поиска
-      setSearchValue(value)
+      dispatch(setSearchValue(value))
     }, 500), []
   )
 
   const closeSearch = () => {
     setValue('')
-    setSearchValue('')
+    dispatch(setSearchValue(''))
     setSearchActive(false)
   }
 

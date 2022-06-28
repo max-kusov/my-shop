@@ -13,10 +13,11 @@ import Paginate from '../../components/paginate/Paginate';
 import axios from 'axios';
 import qs from 'qs';
 
-import { setCategory, setSort, setPageCount, setFilters } from '../../store/slices/filterSlice';
-import { setProducts, setLoaded } from '../../store/slices/productSlice';
+import { setCategory, setSort, setPageCount, setFilters, selectFilter } from '../../store/slices/filterSlice';
+import { setProducts, fetchProducts, selectProducts } from '../../store/slices/productSlice';
 
-import { ShowCart } from '../../App';
+// import { ShowCart } from '../../App';
+import { AnyArray } from 'immer/dist/internal';
 
 const categoriesArray = ['Все', 'Футболки', 'Худи', 'Штаны']
 const sortItems = [
@@ -26,15 +27,32 @@ const sortItems = [
 
 
 const Home: FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
   const navigate = useNavigate()
   const isSearch = React.useRef(false)
   const isMounted = React.useRef(false)
 
-  const { category, sortBy, pageCount } = useSelector((state: any) => state.filter)
-  const { items, isLoaded } = useSelector((state: any) => state.products)
+  const { category, sortBy, pageCount, searchValue } = useSelector(selectFilter)
+  const { items, status } = useSelector(selectProducts)
 
-  const { searchValue }: any = React.useContext(ShowCart)
+
+  const getProducts = async () => {
+    // axios.get(`/products?_page=${pageCount}&_limit=4&${category > 0 ? `category=${category}` : ``}&_sort=${sortBy}&_order=asc`)
+    //   .then(({ data }) => {
+    //     dispatch(setProducts(data))
+    //     dispatch(setLoaded(true))
+    //   })
+    //   .catch((err) => {
+    //     dispatch(setLoaded(false))
+    //   })
+    dispatch(fetchProducts(
+      {
+        pageCount,
+        category,
+        sortBy
+      }
+    ))
+  }
 
   // при изменении параметров
   React.useEffect(() => {
@@ -64,11 +82,7 @@ const Home: FC = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0)
     if (!isSearch.current) {
-      axios.get(`/products?_page=${pageCount}&_limit=4&${category > 0 ? `category=${category}` : ``}&_sort=${sortBy}&_order=asc`)
-        .then(({ data }) => {
-          dispatch(setProducts(data))
-          dispatch(setLoaded(true))
-        })
+      getProducts()
     }
     isSearch.current = false
   }, [category, sortBy, pageCount])
@@ -99,7 +113,6 @@ const Home: FC = () => {
     dispatch(setPageCount(num))
   }, [])
 
-
   return (
     <>
       <Slider />
@@ -116,12 +129,17 @@ const Home: FC = () => {
               onSelectSort={onSelectSort} />
           </div>
           <div className={style.content__wrapper}>
-            <div className={style.content__list}>
-              {isLoaded
-                ? productsMap
-                : Loader
-              }
-            </div>
+            {status === 'error' ? <div className={style.error}>
+              <h1>Произошла ошибка 🥺</h1>
+              <p>Не удалось получить товар</p>
+            </div> :
+              <div className={style.content__list}>
+                {status !== 'loading'
+                  ? productsMap
+                  : Loader
+                }
+              </div>}
+
           </div>
 
         </div>

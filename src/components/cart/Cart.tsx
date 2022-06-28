@@ -4,45 +4,51 @@ import Btn from '../ui/Btn/Btn'
 import style from './Cart.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { ShowCart } from '../../App'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-import { clearCart, removeProductCard, plusProductCard, minusProductCard } from '../../store/actions/cart'
+// import { clearCart, removeProductCard, plusProductCard, minusProductCard } from '../../store/actions/cart'
+import { clearCart, selectCart, toggleCart } from '../../store/slices/cartSlice'
 
 
 const Cart = () => {
-  const { setCart }: any = React.useContext(ShowCart)
 
   const dispatch = useDispatch()
 
-  const { totalPrice, itemsCount, items } = useSelector(({ cart }: any) => cart)
-  const products = Object.keys(items).map(key => {
-    return items[key].items[0]
-  })
+  const { totalPrice, totalCount, items } = useSelector(selectCart)
+
+
+  // const { totalPrice, itemsCount, items } = useSelector(({ cart }: any) => cart)
+  // const products = Object.keys(items).map(key => {
+  //   return items[key].items[0]
+  // })
 
   const closeCart = () => {
-    setCart(false)
+    dispatch(toggleCart(false))
   }
 
+  // const onClearCart = () => {
+  //   if (window.confirm('Очистить корзину?')) {
+  //     dispatch(clearCart())
+  //   }
+  // }
+  // const onRemoveItem = (id: any) => {
+  //   dispatch(removeProductCard(id))
+  // }
+
+  // const onPlusItem = (id: any) => {
+  //   dispatch(plusProductCard(id))
+  // }
+
+  // const onMinusItem = (id: any) => {
+  //   dispatch(minusProductCard(id))
+  // }
   const onClearCart = () => {
     if (window.confirm('Очистить корзину?')) {
       dispatch(clearCart())
     }
   }
-  const onRemoveItem = (id: any) => {
-    dispatch(removeProductCard(id))
-  }
-
-  const onPlusItem = (id: any) => {
-    dispatch(plusProductCard(id))
-  }
-
-  const onMinusItem = (id: any) => {
-    dispatch(minusProductCard(id))
-  }
-
 
   return (
     <div className={style.cart}>
@@ -56,14 +62,14 @@ const Cart = () => {
           </div>
         </div>
         <ul>
-          {products.map((obj, i) => {
+          {items.map((obj: any, i: any) => {
             return <li key={i}><ProductCard
               {...obj}
-              totalPrice={items[obj.id].totalPrice}
-              totalCount={items[obj.id].items.length}
-              onRemoveItem={onRemoveItem}
-              onPlusItem={onPlusItem}
-              onMinusItem={onMinusItem}
+            // totalPrice={items[obj.id].totalPrice}
+            // totalCount={items[obj.id].items.length}
+            // onRemoveItem={onRemoveItem}
+            // onPlusItem={onPlusItem}
+            // onMinusItem={onMinusItem}
             /></li>
           })}
         </ul>
@@ -74,7 +80,7 @@ const Cart = () => {
             <span> 26-05-2022</span>
           </div>
           <div className={style.order__info}>
-            <span>Количество: {itemsCount}</span>
+            <span>Количество: {totalCount}</span>
             <span>Итого: {totalPrice}руб</span>
           </div>
           <Btn text='Оформить заказ' green />

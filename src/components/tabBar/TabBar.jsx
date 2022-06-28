@@ -6,26 +6,26 @@ import { faCartShopping, faHouse, faUser, faHeart } from '@fortawesome/free-soli
 import style from './TabBar.module.scss'
 import { NavLink } from 'react-router-dom'
 
-import { ShowCart } from '../../App'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleCart } from '../../store/slices/cartSlice'
 
 
 const TabBar = () => {
-  console.log('rerender tab')
+  const dispatch = useDispatch()
+  const { items, totalCount } = useSelector((state) => state.cart)
 
-  const { setCart } = React.useContext(ShowCart)
-  const openCart = () => setCart(true)
-  const [active, setActive] = React.useState(0)
-  const handleBtn = () => {
-    setActive()
-  }
+  const openCart = () => dispatch(toggleCart(true))
 
   return (
     <div className={style.tab}>
       <div className={style.icons}>
-        <NavLink to="/" className={style.l}>
+        <NavLink to="/" >
           <FontAwesomeIcon icon={faHouse} />
         </NavLink>
-        <FontAwesomeIcon icon={faCartShopping} onClick={openCart} />
+        <div className={style.cart}>
+          <FontAwesomeIcon icon={faCartShopping} onClick={openCart} />
+          {items.length > 0 && <div className={style.count}>{totalCount}</div>}
+        </div>
 
         <FontAwesomeIcon icon={faHeart} />
         <FontAwesomeIcon icon={faUser} />

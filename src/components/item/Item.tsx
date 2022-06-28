@@ -4,7 +4,10 @@ import { Btn } from '../'
 import style from './Item.module.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faCartShopping } from '@fortawesome/free-solid-svg-icons'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { addItem, selectCartItem } from '../../store/slices/cartSlice'
 
 interface ItemProps {
   id: number,
@@ -18,14 +21,17 @@ interface ItemProps {
 }
 
 const Item: FC<ItemProps> = ({ id, imageUrl, name, colors, price, sizes, label, onAddItems }) => {
+  const dispatch = useDispatch()
+  const cartItem = useSelector(selectCartItem(id))
+
   const sizesArray: Array<string> = ["M", "L", "XL"]
-  // const num = sizes[0]
   const [activeSize, setActiveSize] = React.useState<any>(sizes[0])
   const hendleClickSize = (i: number): void => {
     setActiveSize(i)
   }
-  const handleAddItems = () => {
-    const obj = {
+
+  const onClickAdd = () => {
+    const item = {
       id,
       name,
       imageUrl,
@@ -33,7 +39,7 @@ const Item: FC<ItemProps> = ({ id, imageUrl, name, colors, price, sizes, label, 
       colors,
       size: sizesArray[activeSize]
     }
-    onAddItems(obj)
+    dispatch(addItem(item))
   }
 
   return (
@@ -50,8 +56,10 @@ const Item: FC<ItemProps> = ({ id, imageUrl, name, colors, price, sizes, label, 
       </ul>
       <div className={style.item__footer}>
         <span className={style.item__price}>{price} ₽</span>
-        <div onClick={handleAddItems}>
+        <div style={{ position: 'relative' }} onClick={onClickAdd}>
           <Btn red><FontAwesomeIcon icon={faPlus} /></Btn>
+          {cartItem &&
+            <div className={style.item__count}><FontAwesomeIcon icon={faCartShopping} /> {cartItem.count} </div>}
         </div>
       </div>
       {/* <MyLoader /> */}

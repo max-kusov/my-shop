@@ -4,6 +4,9 @@ import style from './ProductCard.module.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch } from 'react-redux'
+
+import { addItem, minusItem, removeItem } from '../../store/slices/cartSlice'
 
 // import img from '../../../public/img/1.jpg'
 
@@ -18,18 +21,22 @@ interface ProductProps {
   totalCount: number,
   onRemoveItem: any,
   onPlusItem: any,
-  onMinusItem: any
+  onMinusItem: any,
+  count: number
 }
-const ProductCard: FC<ProductProps> = ({ id, name, imageUrl, size, price, color, totalPrice, totalCount, onRemoveItem, onPlusItem, onMinusItem }) => {
-  const handleRemove = () => {
-    onRemoveItem(id)
+const ProductCard: FC<ProductProps> = ({ id, name, imageUrl, size, price, color, count }) => {
+  const dispatch = useDispatch()
+
+  const onClickPlus = () => {
+    dispatch(addItem({ id }))
   }
-  const handlePlus = () => {
-    onPlusItem(id)
+  const onClickMinus = () => {
+    dispatch(minusItem(id))
   }
-  const handleMinus = () => {
-    onMinusItem(id)
+  const onClickRemove = () => {
+    dispatch(removeItem(id))
   }
+
   return (
     <div className={style.card}>
       <img src={imageUrl} alt="" />
@@ -42,21 +49,21 @@ const ProductCard: FC<ProductProps> = ({ id, name, imageUrl, size, price, color,
           </div>
           <FontAwesomeIcon icon={faXmark}
             className={style.card__close}
-            onClick={handleRemove}
+            onClick={onClickRemove}
           />
         </div>
         <div className={style.card__footer}>
           <div className={style.card__amount}>
             <div className={style.card__btn}
-              onClick={handleMinus}
+              onClick={onClickMinus}
             >-</div>
-            <span>{totalCount}</span>
+            <span>{count}</span>
             <div className={style.card__btn}
-              onClick={handlePlus}
+              onClick={onClickPlus}
             >+</div>
           </div>
           <div className={style.card__price}>
-            {totalPrice}руб
+            {price * count}руб
           </div>
         </div>
       </div>

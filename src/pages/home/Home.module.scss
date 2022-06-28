@@ -23,7 +23,7 @@
     margin-top: 60px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     grid-column-gap: 40px;
     grid-row-gap: 40px;
 
@@ -37,5 +37,21 @@
       grid-column-gap: 40px;
 
     }
+  }
+}
+
+.error {
+  margin: 200px auto;
+  width: 80%;
+
+  color: #fff;
+  text-align: center;
+
+  span {
+    font-size: 80px;
+  }
+
+  p {
+    font-size: 28px;
   }
 }
