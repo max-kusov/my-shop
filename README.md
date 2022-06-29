@@ -12,7 +12,7 @@
     - CSS-Modules 
     - Lodash.Debounce
 
-![Deploy](https://my-shop-knvmap9ld-max-kusov.vercel.app/)
+Deploy: https://my-shop-knvmap9ld-max-kusov.vercel.app/
 
 Что уже успел сделать:
 - [x] Перенес логику на ~~REDUX~~ Redux-toolkit
