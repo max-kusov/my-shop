@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import ProductCard from '../productCard/ProductCard'
-import Btn from '../ui/btn/Btn'
+import Btn from '../btn/Btn'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { clearCart, selectCart, toggleCart } from '../../store/slices/cartSlice'

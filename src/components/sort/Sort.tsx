@@ -5,7 +5,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
 import style from './Sort.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectFilter, setSort } from '../../../store/slices/filterSlice'
+import { selectFilter, setSort } from '../../store/slices/filterSlice'
 
 interface SortItem {
   name: string,

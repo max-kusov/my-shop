@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import Categories from '../../components/categories/Categories'
-import Sort from '../../components/ui/sort/Sort'
+import Sort from '../../components/sort/Sort'
 import Item from '../../components/item/Item'
 
 

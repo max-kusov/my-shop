@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 import { useDispatch } from 'react-redux'
-import { setSearchValue } from '../../../store/slices/filterSlice'
+import { setSearchValue } from '../../store/slices/filterSlice'
 
 import debounce from 'lodash.debounce'
 

@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faUser, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 
 import style from './Header.module.scss'
-import Search from '../ui/search/Search'
+import Search from '../search/Search'
 import { selectCart, toggleCart } from '../../store/slices/cartSlice'
 
 
