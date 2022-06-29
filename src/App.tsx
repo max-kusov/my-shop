@@ -16,7 +16,6 @@ import TabBar from './components/tabBar/TabBar';
 const App: FC = () => {
   const { showCart } = useSelector(selectCart)
 
-
   return (
     < div >
       <Header />
