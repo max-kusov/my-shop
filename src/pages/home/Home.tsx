@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import Categories from '../../components/categories/Categories'
-import Sort from '../../components/ui/Sort/Sort'
+import Sort from '../../components/ui/sort/Sort'
 import Item from '../../components/item/Item'
 
 
@@ -15,7 +15,7 @@ import Paginate from '../../components/paginate/Paginate';
 
 import qs from 'qs';
 
-import { setCategory, setSort, setPageCount, setFilters, selectFilter } from '../../store/slices/filterSlice';
+import { setCategory, setPageCount, setFilters, selectFilter } from '../../store/slices/filterSlice';
 import { fetchProducts, selectProducts } from '../../store/slices/productSlice';
 
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import Btn from '../ui/Btn/Btn'
+import Btn from '../ui/btn/Btn'
 
 import style from './Categories.module.scss'
 

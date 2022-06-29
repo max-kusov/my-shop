@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { selectCart } from './store/slices/cartSlice';
 
 import Home from './pages/home/Home'
-import NotFound from './pages/NotFound/NotFound';
+import NotFound from './pages/notFound/NotFound';
 
 import Header from './components/header/Header';
 import Cart from './components/cart/Cart'
