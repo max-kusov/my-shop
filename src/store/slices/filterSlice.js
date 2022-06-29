@@ -4,7 +4,10 @@ const initialState = {
   searchValue: '',
   category: 0,
   pageCount: 1,
-  sortBy: 'popular'
+  sortBy: {
+    name: 'популярности',
+    type: 'popular'
+  }
 }
 
 const filterSlice = createSlice({

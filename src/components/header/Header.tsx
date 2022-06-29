@@ -9,17 +9,11 @@ import { faCartShopping, faUser, faAngleLeft } from '@fortawesome/free-solid-svg
 
 import style from './Header.module.scss'
 import Search from '../ui/Search/Search'
-// import { ShowCart } from '../../App'
 import { selectCart, toggleCart } from '../../store/slices/cartSlice'
 
 
 
-interface HeaderProps {
-  // searchValue: string,
-  // setSearchValue: any
-}
-//{ searchValue, setSearchValue }
-const Header: FC<HeaderProps> = () => {
+const Header: FC = () => {
   const dispatch = useDispatch()
   const { totalCount } = useSelector(selectCart)
   const openCart = () => dispatch(toggleCart(true))

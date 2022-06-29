@@ -1,49 +1,25 @@
-import React from 'react'
+import React, { FC } from 'react'
 import ProductCard from '../productCard/ProductCard'
 import Btn from '../ui/Btn/Btn'
-import style from './Cart.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { clearCart, selectCart, toggleCart } from '../../store/slices/cartSlice'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-// import { clearCart, removeProductCard, plusProductCard, minusProductCard } from '../../store/actions/cart'
-import { clearCart, selectCart, toggleCart } from '../../store/slices/cartSlice'
+import style from './Cart.module.scss'
 
-
-const Cart = () => {
+const Cart: FC = () => {
 
   const dispatch = useDispatch()
 
   const { totalPrice, totalCount, items } = useSelector(selectCart)
 
-
-  // const { totalPrice, itemsCount, items } = useSelector(({ cart }: any) => cart)
-  // const products = Object.keys(items).map(key => {
-  //   return items[key].items[0]
-  // })
-
   const closeCart = () => {
     dispatch(toggleCart(false))
   }
 
-  // const onClearCart = () => {
-  //   if (window.confirm('Очистить корзину?')) {
-  //     dispatch(clearCart())
-  //   }
-  // }
-  // const onRemoveItem = (id: any) => {
-  //   dispatch(removeProductCard(id))
-  // }
-
-  // const onPlusItem = (id: any) => {
-  //   dispatch(plusProductCard(id))
-  // }
-
-  // const onMinusItem = (id: any) => {
-  //   dispatch(minusProductCard(id))
-  // }
   const onClearCart = () => {
     if (window.confirm('Очистить корзину?')) {
       dispatch(clearCart())
@@ -62,14 +38,9 @@ const Cart = () => {
           </div>
         </div>
         <ul>
-          {items.map((obj: any, i: any) => {
+          {items.map((obj: any, i: number) => {
             return <li key={i}><ProductCard
               {...obj}
-            // totalPrice={items[obj.id].totalPrice}
-            // totalCount={items[obj.id].items.length}
-            // onRemoveItem={onRemoveItem}
-            // onPlusItem={onPlusItem}
-            // onMinusItem={onMinusItem}
             /></li>
           })}
         </ul>

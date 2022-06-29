@@ -1,5 +1,8 @@
 import React, { FC } from 'react'
-import { Categories, Sort, Item } from '../../components'
+import Categories from '../../components/categories/Categories'
+import Sort from '../../components/ui/Sort/Sort'
+import Item from '../../components/item/Item'
+
 
 import style from './Home.module.scss'
 
@@ -10,20 +13,10 @@ import { useNavigate } from 'react-router-dom';
 import MyLoader from '../../components/item/MyLoader';
 import Paginate from '../../components/paginate/Paginate';
 
-import axios from 'axios';
 import qs from 'qs';
 
 import { setCategory, setSort, setPageCount, setFilters, selectFilter } from '../../store/slices/filterSlice';
-import { setProducts, fetchProducts, selectProducts } from '../../store/slices/productSlice';
-
-// import { ShowCart } from '../../App';
-import { AnyArray } from 'immer/dist/internal';
-
-const categoriesArray = ['Все', 'Футболки', 'Худи', 'Штаны']
-const sortItems = [
-  { name: 'популярности', type: 'popular' },
-  { name: 'цене', type: 'price' }
-]
+import { fetchProducts, selectProducts } from '../../store/slices/productSlice';
 
 
 const Home: FC = () => {
@@ -35,16 +28,7 @@ const Home: FC = () => {
   const { category, sortBy, pageCount, searchValue } = useSelector(selectFilter)
   const { items, status } = useSelector(selectProducts)
 
-
   const getProducts = async () => {
-    // axios.get(`/products?_page=${pageCount}&_limit=4&${category > 0 ? `category=${category}` : ``}&_sort=${sortBy}&_order=asc`)
-    //   .then(({ data }) => {
-    //     dispatch(setProducts(data))
-    //     dispatch(setLoaded(true))
-    //   })
-    //   .catch((err) => {
-    //     dispatch(setLoaded(false))
-    //   })
     dispatch(fetchProducts(
       {
         pageCount,
@@ -94,22 +78,14 @@ const Home: FC = () => {
     return false
   }).map((product: any) => <Item key={product.id} {...product} />)
 
-  // клик дабавления в корзину
-  //onAddItems={addToCart} !!!!!!!!!!!!!!
-
-  // const addToCart = (obj: any): void => {
-  //   dispatch(addItemsToCart(obj))
-  // }
   const Loader = Array(4).fill(0).map((_, i) => <MyLoader key={i} />)
 
-  const onSelectCategy = React.useCallback((i: any) => {
+  const onSelectCategy = React.useCallback((i: number) => {
     dispatch(setCategory(i))
-  }, [])
-  const onSelectSort = React.useCallback((i: any) => {
-    dispatch(setSort(i))
+    dispatch(setPageCount(1))
   }, [])
 
-  const onChangePage = React.useCallback((num: any) => {
+  const onChangePage = React.useCallback((num: number) => {
     dispatch(setPageCount(num))
   }, [])
 
@@ -121,12 +97,8 @@ const Home: FC = () => {
           <div className={style.content__top}>
             <Categories
               activeCategory={category}
-              items={categoriesArray}
               onClickItem={onSelectCategy} />
-            <Sort
-              activeItem={sortBy}
-              items={sortItems}
-              onSelectSort={onSelectSort} />
+            <Sort />
           </div>
           <div className={style.content__wrapper}>
             {status === 'error' ? <div className={style.error}>
@@ -155,13 +127,5 @@ export default Home
 // папки с заглавной буквы
 // заменить все файлы в папках на индекс?
 // .root {}
-
-
-
-
-/// старый вариант
-  // React.useEffect(() => {
-  //   dispatch<any>(fetchProducts(sortBy, category, currentPage))
-  // }, [category, sortBy, currentPage])
 
   // баг при выборе всех пицц и перезагрузке

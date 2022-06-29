@@ -6,6 +6,16 @@
   }
 
   li {
-    margin: 0 5px;
+    margin: 5px;
+  }
+
+  // margin: 5px;
+
+  @media(max-width: 580px) {
+    flex-wrap: wrap;
+
+    // li {
+    //   margin: 5px 5px;
+    // }
   }
 }

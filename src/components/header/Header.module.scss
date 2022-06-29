@@ -18,26 +18,23 @@
     }
 
     &__mobile {
-      // background-color: pink;
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-size: 26px;
-      min-width: 375px;
+      min-width: 275px;
       height: 83px;
       color: #fff;
       padding: 20px;
       opacity: .7;
     }
-
   }
 
-  // box-Shadow: 0px 0px 25px 15px rgba(142, 142, 142, 0.3);
-
-  // &__mobile {
-
-  //   // opacity: .4;
-  // }
+  @media(max-width: 580px) {
+    span {
+      display: none;
+    }
+  }
 
   &__test {
     position: relative;

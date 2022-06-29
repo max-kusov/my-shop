@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import ReactPaginate from 'react-paginate';
 
 import style from './Paginate.module.scss'
 
-const Paginate = ({ value, onChangePage }) => {
+interface PaginateProps {
+  value: number,
+  onChangePage: (arg: number) => void
+}
+
+const Paginate: FC<PaginateProps> = ({ value, onChangePage }) => {
   return (
     <ReactPaginate
       className={style.paginate}

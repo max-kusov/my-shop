@@ -1,26 +1,20 @@
 import React, { FC } from 'react'
-
-import { Btn } from '../'
+import Btn from '../ui/Btn/Btn'
 
 import style from './Categories.module.scss'
 
-interface PropsCategories {
-  activeCategory: any,
-  items: Array<string>,
-  onClickItem: any
+interface CategoriesProps {
+  activeCategory: number,
+  onClickItem: (arg: number) => void
 }
 
-const Categories: FC<PropsCategories> = React.memo(({ activeCategory, items, onClickItem }) => {
+const items = ['Все', 'Футболки', 'Худи', 'Штаны', 'Сумки']
 
+const Categories: FC<CategoriesProps> = React.memo(({ activeCategory, onClickItem }) => {
   const onSelectActive = (i: number | null): boolean => activeCategory === i ? true : false
-  console.log(typeof (activeCategory))
+
   return (
     <ul className={style.categories}>
-      {/* <li
-        className={activeCategory === null ? 'active' : ''}
-        onClick={() => onClickItem(null)}>
-        <Btn text={'Все'} red={onSelectActive(null)} />
-      </li> */}
       {items.map((item, i) =>
         <li onClick={() => onClickItem(i)} key={i} >
           <Btn text={item} red={onSelectActive(i)} />

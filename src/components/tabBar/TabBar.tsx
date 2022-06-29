@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { FC } from 'react'
+import { NavLink } from 'react-router-dom'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCart, toggleCart } from '../../store/slices/cartSlice'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faHouse, faUser, faHeart } from '@fortawesome/free-solid-svg-icons'
 
 import style from './TabBar.module.scss'
-import { NavLink } from 'react-router-dom'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { toggleCart } from '../../store/slices/cartSlice'
 
 
-const TabBar = () => {
+const TabBar: FC = () => {
   const dispatch = useDispatch()
-  const { items, totalCount } = useSelector((state) => state.cart)
+  const { items, totalCount } = useSelector(selectCart)
 
   const openCart = () => dispatch(toggleCart(true))
 

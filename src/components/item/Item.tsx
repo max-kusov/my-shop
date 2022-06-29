@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Btn } from '../'
+import Btn from '../ui/Btn/Btn'
 
 import style from './Item.module.scss'
 
@@ -13,20 +13,20 @@ interface ItemProps {
   id: number,
   imageUrl: string,
   name: string,
-  colors: Array<string>,
+  colors: string[],
   price: number,
-  sizes: Array<Number>,
-  label: string,
-  onAddItems: any
+  sizes: number[],
+  label: string
 }
 
-const Item: FC<ItemProps> = ({ id, imageUrl, name, colors, price, sizes, label, onAddItems }) => {
+const Item: FC<ItemProps> = ({ id, imageUrl, name, colors, price, sizes, label }) => {
   const dispatch = useDispatch()
   const cartItem = useSelector(selectCartItem(id))
 
-  const sizesArray: Array<string> = ["M", "L", "XL"]
-  const [activeSize, setActiveSize] = React.useState<any>(sizes[0])
-  const hendleClickSize = (i: number): void => {
+  const sizesArray: string[] = ["M", "L", "XL"]
+  const [activeSize, setActiveSize] = React.useState<number>(sizes[0])
+
+  const hendleClickSize = (i: number) => {
     setActiveSize(i)
   }
 
@@ -62,7 +62,6 @@ const Item: FC<ItemProps> = ({ id, imageUrl, name, colors, price, sizes, label, 
             <div className={style.item__count}><FontAwesomeIcon icon={faCartShopping} /> {cartItem.count} </div>}
         </div>
       </div>
-      {/* <MyLoader /> */}
     </div>
   )
 }

@@ -9,7 +9,7 @@ export const fetchProducts = createAsyncThunk(
       category,
       sortBy
     } = params
-    const { data } = await axios.get(`/products?_page=${pageCount}&_limit=4&${category > 0 ? `category=${category}` : ``}&_sort=${sortBy}&_order=asc`)
+    const { data } = await axios.get(`/products?_page=${pageCount}&_limit=4&${category > 0 ? `category=${category}` : ``}&_sort=${sortBy.type}&_order=asc`)
     return data
   }
 )

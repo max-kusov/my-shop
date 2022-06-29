@@ -24,7 +24,6 @@
   position: relative;
   opacity: .9;
 
-
   &__label {
     position: absolute;
     right: -10px;
@@ -84,7 +83,6 @@
     line-height: 20px;
 
     color: #F7F7F7;
-
   }
 
   &__text {
@@ -148,5 +146,37 @@
   .disabled {
     opacity: .2;
     pointer-events: none;
+  }
+
+  @media(max-width: 580px) {
+    width: 300px;
+    font-size: 26px;
+
+    &:hover {
+      transform: none;
+    }
+
+    & img {
+      height: 300px;
+      width: 260px;
+    }
+
+    & h2 {
+      font-size: 26px;
+      margin: 12px 0;
+    }
+
+    &__text {
+      font-size: 20px;
+    }
+
+    & li {
+      font-size: 26px;
+      padding: 5px 20px;
+    }
+
+    &__price {
+      font-size: 24px;
+    }
   }
 }

@@ -8,8 +8,6 @@ import { useDispatch } from 'react-redux'
 
 import { addItem, minusItem, removeItem } from '../../store/slices/cartSlice'
 
-// import img from '../../../public/img/1.jpg'
-
 interface ProductProps {
   id: number,
   name: string,
@@ -17,11 +15,6 @@ interface ProductProps {
   size: string,
   price: number,
   color: string,
-  totalPrice: any,
-  totalCount: number,
-  onRemoveItem: any,
-  onPlusItem: any,
-  onMinusItem: any,
   count: number
 }
 const ProductCard: FC<ProductProps> = ({ id, name, imageUrl, size, price, color, count }) => {

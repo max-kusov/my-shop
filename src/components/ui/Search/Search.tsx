@@ -1,19 +1,21 @@
 import React, { FC } from 'react'
 
-import styles from './Search.module.scss'
+import { useDispatch } from 'react-redux'
+import { setSearchValue } from '../../../store/slices/filterSlice'
+
+import debounce from 'lodash.debounce'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
 
-import debounce from 'lodash.debounce'
+import styles from './Search.module.scss'
 
-import { useDispatch } from 'react-redux'
-import { setSearchValue } from '../../../store/slices/filterSlice'
 
 const Search: FC = () => {
-  const [searchActive, setSearchActive] = React.useState(false)
   const dispatch = useDispatch()
-  const [value, setValue] = React.useState('')
+
+  const [searchActive, setSearchActive] = React.useState<boolean>(false)
+  const [value, setValue] = React.useState<string>('')
 
   const openSearch = () => !searchActive ? setSearchActive(true) : false
 

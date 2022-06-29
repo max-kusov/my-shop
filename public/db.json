@@ -2,36 +2,33 @@
   "products": [
     {
       "id": 0,
-      "imageUrl": "./img/1-3.jpg",
-      "name": "Худи СК",
-      "colors": "Черный",
+      "imageUrl": "./img/bag-3.jpg",
+      "name": "Сумка BIG-VM",
+      "colors": "Коричневый",
       "sizes": [
-        0,
-        1,
         2
       ],
-      "price": 2500,
-      "popular": 5,
-      "category": 2
+      "price": 1400,
+      "category": 4,
+      "label": "top",
+      "popular": 5
     },
     {
       "id": 1,
-      "imageUrl": "./img/1-2.jpg",
-      "name": "Худи СК",
-      "colors": "Черный",
+      "imageUrl": "./img/bag-4.jpg",
+      "name": "Сумка VM",
+      "colors": "Красный",
       "sizes": [
-        1,
-        2
+        0
       ],
-      "price": 2500,
-      "category": 2,
-      "popular": 1,
-      "label": "new"
+      "price": 1400,
+      "category": 4,
+      "popular": 8
     },
     {
       "id": 2,
       "imageUrl": "./img/2-1.jpg",
-      "name": "Футболка СК",
+      "name": "Футболка ВМ",
       "colors": "Черный",
       "sizes": [
         0,
@@ -41,31 +38,34 @@
       "price": 900,
       "category": 1,
       "popular": 4,
-      "label": "top"
+      "label": "sale"
     },
     {
       "id": 3,
-      "imageUrl": "./img/2-3.jpg",
-      "name": "Футболка СК",
-      "colors": "Черный",
+      "imageUrl": "./img/bag-1.jpg",
+      "name": "Сумка VM",
+      "colors": "Серый",
       "sizes": [
-        0,
-        2
+        0
       ],
-      "price": 1200,
-      "category": 1
+      "price": 900,
+      "category": 4,
+      "popular": 5,
+      "label": "sale"
     },
     {
       "id": 4,
-      "imageUrl": "./img/3.jpg",
+      "imageUrl": "./img/pants-1.jpg",
       "name": "Джоггеры",
       "colors": "Черный",
       "sizes": [
+        0,
+        1,
         2
       ],
       "price": 3900,
-      "popular": 2,
-      "category": 3
+      "category": 3,
+      "popular": 2
     },
     {
       "id": 5,
@@ -77,6 +77,7 @@
         2
       ],
       "price": 1500,
+      "popular": 1,
       "category": 2
     },
     {
@@ -89,8 +90,76 @@
         1
       ],
       "price": 1200,
+      "popular": 7,
       "category": 1,
-      "label": "sale"
+      "label": "top"
+    },
+    {
+      "id": 7,
+      "imageUrl": "./img/2-3.jpg",
+      "name": "Футболка СК",
+      "colors": "Черный",
+      "sizes": [
+        0,
+        2
+      ],
+      "price": 1200,
+      "category": 1,
+      "popular": 7
+    },
+    {
+      "id": 8,
+      "imageUrl": "./img/bag-2.jpg",
+      "name": "Сумка VM",
+      "colors": "Серый",
+      "sizes": [
+        0
+      ],
+      "price": 1400,
+      "category": 4,
+      "popular": 10
+    },
+    {
+      "id": 0,
+      "imageUrl": "./img/1-3.jpg",
+      "name": "Худи СК",
+      "colors": "Черный",
+      "sizes": [
+        0,
+        1,
+        2
+      ],
+      "price": 2500,
+      "popular": 9,
+      "category": 2
+    },
+    {
+      "id": 10,
+      "imageUrl": "./img/1-2.jpg",
+      "name": "Худи ВМ",
+      "colors": "Черный",
+      "sizes": [
+        1,
+        2
+      ],
+      "price": 2500,
+      "category": 2,
+      "popular": 10,
+      "label": "new"
+    },
+    {
+      "id": 11,
+      "imageUrl": "./img/pants-2.jpg",
+      "name": "Джоггеры Хаки",
+      "colors": "Хаки",
+      "sizes": [
+        0,
+        1,
+        2
+      ],
+      "price": 3700,
+      "category": 3,
+      "popular": 6
     }
   ]
 }

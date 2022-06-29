@@ -45,6 +45,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 10px;
   }
 
   &__amount {
@@ -78,5 +79,9 @@
 
   &__price {
     font-size: 20px;
+  }
+
+  @media(max-width: 580px) {
+    width: 340px;
   }
 }
