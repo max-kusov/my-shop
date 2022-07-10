@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import logo from '../../assets/images/logo.png'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faUser, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
@@ -17,7 +17,6 @@ const Header: FC = () => {
   const dispatch = useDispatch()
   const { totalCount } = useSelector(selectCart)
   const openCart = () => dispatch(toggleCart(true))
-
 
   return (
     <header className={style.header}>
@@ -38,8 +37,9 @@ const Header: FC = () => {
           </div>
         </div>
         <div className={style.header__mobile}>
-          <FontAwesomeIcon icon={faAngleLeft} />
-          <span>Главная</span>
+          <Link to='/'>
+            <FontAwesomeIcon icon={faAngleLeft} />
+          </Link>
           <Search />
         </div>
       </div>

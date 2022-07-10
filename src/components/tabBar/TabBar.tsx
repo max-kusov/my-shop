@@ -13,6 +13,8 @@ import style from './TabBar.module.scss'
 const TabBar: FC = () => {
   const dispatch = useDispatch()
   const { items, totalCount } = useSelector(selectCart)
+  const marksItem = useSelector((state: any) => state.marks.totalCountMarks)
+
 
   const openCart = () => dispatch(toggleCart(true))
 
@@ -26,9 +28,15 @@ const TabBar: FC = () => {
           <FontAwesomeIcon icon={faCartShopping} onClick={openCart} />
           {items.length > 0 && <div className={style.count}>{totalCount}</div>}
         </div>
-
-        <FontAwesomeIcon icon={faHeart} />
-        <FontAwesomeIcon icon={faUser} />
+        <NavLink to="/marks" >
+          <div className={style.cart}>
+            <FontAwesomeIcon icon={faHeart} />
+            {marksItem > 0 && <div className={style.count}>{marksItem}</div>}
+          </div>
+        </NavLink>
+        <NavLink to="*" >
+          <FontAwesomeIcon icon={faUser} />
+        </NavLink>
 
       </div>
     </div>

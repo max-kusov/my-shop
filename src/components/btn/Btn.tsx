@@ -13,9 +13,10 @@ const Btn: FC<BtnProps> = ({ red, green, text, children }) => {
 
   return (
     <button
-      className={`${style.root} ${red ? style.red : ''} ${green ? style.green : ''}`}>
+      className={`${style.root} ${red ? style.red : ''} ${green ? style.green : ''}`
+      }>
       {text || children}
-    </button>
+    </button >
   )
 }
 

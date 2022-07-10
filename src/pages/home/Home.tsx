@@ -19,6 +19,7 @@ import { setCategory, setPageCount, setFilters, selectFilter } from '../../store
 import { fetchProducts, selectProducts } from '../../store/slices/productSlice';
 
 
+
 const Home: FC = () => {
   const dispatch = useDispatch<any>()
   const navigate = useNavigate()
@@ -76,7 +77,7 @@ const Home: FC = () => {
       return true
     }
     return false
-  }).map((product: any) => <Item key={product.id} {...product} />)
+  }).map((product: any) => <Item key={product.id} {...product} markIcon />)
 
   const Loader = Array(4).fill(0).map((_, i) => <MyLoader key={i} />)
 

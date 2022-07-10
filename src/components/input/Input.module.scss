@@ -1,0 +1,45 @@
+.root {
+  position: relative;
+  margin: 20px 0;
+
+  label {
+    font-size: 18px;
+    color: #dcdbdb;
+    position: absolute;
+    top: 2px;
+    left: 16px;
+    transition: .2s;
+    pointer-events: none;
+  }
+
+  input {
+    display: block;
+    padding: 5px 10px;
+    width: 410px;
+    border-radius: 5px;
+    outline: none;
+    color: #fff;
+    background-color: rgba(250, 250, 250, 0.01);
+    border-bottom: 1.5px solid #dcdbdb;
+    margin-top: 5px;
+
+
+    &:valid {
+      border-bottom: 1.5px solid rgb(73, 185, 76);
+    }
+
+    &:valid~label {
+      color: rgb(73, 185, 76);
+    }
+
+    &:focus~label,
+    &:valid~label {
+      font-size: 14px;
+      top: -10px;
+      left: 8px;
+    }
+  }
+  .error {
+    border: 1px solid #D91313;
+  }
+}

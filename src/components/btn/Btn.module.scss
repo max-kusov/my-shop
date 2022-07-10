@@ -14,7 +14,12 @@
     border: 1.5px solid #ABB4BD;
     color: #ABB4BD;
   }
+
+  &:disabled {
+    opacity: .6;
+  }
 }
+
 
 .red {
   background: #EF3651;

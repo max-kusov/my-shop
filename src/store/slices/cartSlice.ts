@@ -1,6 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+type CartItem = {
+  id: number,
+  name: string,
+  imageUrl: string,
+  price: number,
+  colors: string[],
+  size: number,
+  count: number
+}
+
+interface cartSliceState {
+  showCart: boolean,
+  totalPrice: number,
+  totalCount: number,
+  items: CartItem[]
+}
+
+const initialState: cartSliceState = {
   showCart: false,
   totalPrice: 0,
   totalCount: 0,
@@ -45,8 +62,8 @@ const cartSlice = createSlice({
   }
 })
 
-export const selectCart = (state) => state.cart
-export const selectCartItem = (id) => (state) => state.cart.items.find((obj) => obj.id === id)
+export const selectCart = (state: any) => state.cart
+export const selectCartItem = (id: number) => (state: any) => state.cart.items.find((obj: any) => obj.id === id)
 
 export const { toggleCart, addItem, minusItem, removeItem, clearCart } = cartSlice.actions
 

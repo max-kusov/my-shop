@@ -25,6 +25,9 @@ const Cart: FC = () => {
       dispatch(clearCart())
     }
   }
+  const openForm = () => {
+    console.log('hello')
+  }
 
   return (
     <div className={style.cart}>
@@ -54,7 +57,9 @@ const Cart: FC = () => {
             <span>Количество: {totalCount}</span>
             <span>Итого: {totalPrice}руб</span>
           </div>
-          <Btn text='Оформить заказ' green />
+          <div onClick={openForm}>
+            <Btn text='Оформить заказ' green />
+          </div>
         </div>
       </div>
     </div>

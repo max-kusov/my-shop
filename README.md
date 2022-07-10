@@ -6,7 +6,7 @@
   - React Router v6
   - AXIOS
   - React Hooks
-  Прочее: 
+  - Прочее: 
     - React Content Loader
     - React Pagination
     - CSS-Modules 
